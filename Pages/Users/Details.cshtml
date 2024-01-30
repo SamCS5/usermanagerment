@@ -1,0 +1,53 @@
+﻿@page
+@model UserApplication.Pages.Users.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.User.Permissions)
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <tr>
+                    <th>Group Name</th>
+                    <th>UserPermission</th>
+                </tr>
+                @foreach (var item in Model.User.Permissions)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Group.GroupName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserPermissions)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.User?.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
